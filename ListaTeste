@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista Interativa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    ul {
+      margin-top: 20px;
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      padding: 5px 10px;
+      background: #f0f0f0;
+      margin-bottom: 5px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Atualizar Lista</h1>
+
+  <input type="text" id="itemInput" placeholder="Digite um item">
+  <button onclick="adicionarItem()">Adicionar</button>
+
+  <ul id="lista">
+    <!-- Itens vão aparecer aqui -->
+  </ul>
+
+  <script>
+    const lista = document.getElementById('lista');
+    const input = document.getElementById('itemInput');
+    const itens = new Set(); // Para garantir itens únicos
+
+    function adicionarItem() {
+      const valor = input.value.trim();
+      if (valor !== "" && !itens.has(valor)) {
+        itens.add(valor);
+        const li = document.createElement('li');
+        li.textContent = valor;
+        lista.appendChild(li);
+        input.value = "";
+      } else if (itens.has(valor)) {
+        alert("Esse item já está na lista.");
+      }
+    }
+
+    input.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        adicionarItem();
+      }
+    });
+  </script>
+
+</body>
+</html>
+Testando página
